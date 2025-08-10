@@ -10,17 +10,12 @@ let current = 0;
 
 
 function showImage(index) {
-  
-images.forEach((img, i) => {
-    
-img.classList.toggle('active', i === index);
-  
-});
-  
-current = index;
-
+  images.forEach((img, i) => {
+    img.classList.toggle('active', i === index);
+    img.style.zIndex = i === index ? 1 : 0; // 当前图片放到最上层
+  });
+  current = index;
 }
-
 
 
 prevBtn.addEventListener('click', () => {
