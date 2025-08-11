@@ -85,10 +85,14 @@ body {
 }
 
 #visitor-counter {
-    text-align: center;
-    padding: 10px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    padding: 5px 10px;
     font-size: 14px;
     background-color: #000;
+    color: white;
+    border-radius: 5px;
 }
 </style>
 </head>
@@ -123,9 +127,10 @@ body {
 </div>
 <div class="caption">
     <strong>Mark Zhang - Art Portfolio</strong>  | <a href="https://x.com/markzhangart" target="_blank" style="color:#4fa3ff">X</a>  | <a href="https://www.artstation.com/markzhang" target="_blank" style="color:#4fa3ff">Artstation</a><br><br>
-    Hello there! I am a concept artist from China. For collaboration, feel free to contact: <a href="mailto:markzhangart@gmail.com" style="color:skyblue;">markzhangart@gmail.com</a><div id="visitor-counter">
-    <span id="counter">0</span>
+    Hello there! I am a concept artist from China. For collaboration, feel free to contact: <a href="mailto:markzhangart@gmail.com" style="color:skyblue;">markzhangart@gmail.com</a>
 </div>
+<div id="visitor-counter">
+    <span id="counter">0</span>
 </div>
 
 <script>
@@ -162,7 +167,7 @@ document.addEventListener('keydown', (e) => {
 
 // CountAPI ¼ÆÊýÆ÷
 window.onload = function () {
-    fetch('https://api.countapi.xyz/hit/makrzhang.art/visits')
+    fetch('https://api.countapi.xyz/hit/markzhangart.com/visits')
         .then(response => response.json())
         .then(data => {
             document.getElementById('counter').textContent = data.value;
