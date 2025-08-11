@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Image Gallery</title>
+<title>Mark Zhang Art Portfolio</title>
 <style>
 html, body {
   height: 100%;
@@ -13,7 +13,6 @@ html, body {
   overflow: hidden;
 }
 
-/* 底部文字区域 */
 footer {
   height: 60px;
   text-align: center;
@@ -23,10 +22,9 @@ footer {
   padding: 10px;
 }
 
-/* 图片展示区域 */
 #gallery {
   position: relative;
-  height: calc(100vh - 70px); /* 减去 footer 高度 */
+  height: calc(100vh - 70px);
   width: 100%;
   display: flex;
   align-items: center;
@@ -45,13 +43,16 @@ footer {
   transform: translate(-50%, -50%);
   opacity: 0;
   transition: opacity 0.5s ease;
+  pointer-events: none; /* 禁止非活跃图片响应鼠标 */
+  z-index: 1; /* 非活跃图片低层级 */
 }
 
 #gallery img.active {
   opacity: 1;
+  pointer-events: auto; /* 允许活跃图片响应鼠标 */
+  z-index: 2; /* 活跃图片高层级 */
 }
 
-/* 左右切换按钮 */
 button#prev, button#next {
   position: absolute;
   top: 50%;
@@ -111,7 +112,7 @@ button#prev:hover, button#next:hover {
 <footer>
   <strong>Mark Zhang - Art Portfolio</strong><br>
   Hello! My name is Mark Zhang. I am a concept artist. For collaboration, please contact email below:<br>
-  <a href="mailto:markzhangart@gmail.com" style="color:#4fa3ff">markzhangart@gmail.com</a>  | <a href="https://x.com/markzhangart"  target="_blank" style="color:#4fa3ff">X</a>  | <a href="https://www.artstation.com/markzhang"   target="_blank" style="color:#4fa3ff">Artstation</a>
+  <a href="mailto:markzhangart@gmail.com" style="color:#4fa3ff">markzhangart@gmail.com</a>  | <a href="https://x.com/markzhangart" target="_blank" style="color:#4fa3ff">X</a>  | <a href="https://www.artstation.com/markzhang" target="_blank" style="color:#4fa3ff">Artstation</a>
 </footer>
 
 <script>
