@@ -1,99 +1,139 @@
-ï»¿<!DOCTYPE html>
-
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
+<meta charset="UTF-8">
+<title>Image Gallery</title>
+<style>
+html, body {
+  height: 100%;
+  margin: 0;
+  background-color: #111;
+  color: white;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
 
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+/* µ×²¿ÎÄ×ÖÇøÓò */
+footer {
+  height: 60px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.4;
+  background-color: #111;
+  padding: 10px;
+}
 
-<title>Mark Zhang Art</title>
+/* Í¼Æ¬Õ¹Ê¾ÇøÓò */
+#gallery {
+  position: relative;
+  height: calc(100vh - 70px); /* ¼õÈ¥ footer ¸ß¶È */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
 
-<link rel="stylesheet" href="style.css" />
+#gallery img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  user-select: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
 
+#gallery img.active {
+  opacity: 1;
+}
+
+/* ×óÓÒÇÐ»»°´Å¥ */
+button#prev, button#next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  font-size: 3rem;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+button#prev { left: 20px; }
+button#next { right: 20px; }
+
+button#prev:hover, button#next:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+</style>
 </head>
-
-
 <body>
-<div id="gallery-container">
-  <button id="prev" aria-label="Previous">&#9664;</button>
-  <div id="gallery">
-   
-<!-- å›¾ç‰‡å ä½ -->
-    
-<img src="images/work1.jpg" class="active" alt="Artwork 1" />
 
-<img src="images/work2.jpg" class="active" alt="Artwork 2" />
-
-<img src="images/work3.jpg" class="active" alt="Artwork 3" />
-
-<img src="images/work4.jpg" class="active" alt="Artwork 4" />
-
-<img src="images/work5.jpg" class="active" alt="Artwork 5" />
-
-<img src="images/work6.jpg" class="active" alt="Artwork 6" />
-
-<img src="images/work7.jpg" class="active" alt="Artwork 7" />
-
-<img src="images/work8.jpg" class="active" alt="Artwork 8" />
-
-<img src="images/work9.jpg" class="active" alt="Artwork 9" />
-
-<img src="images/work10.jpg" class="active" alt="Artwork 10" />
-
-<img src="images/work11.jpg" class="active" alt="Artwork 11" />
-
-<img src="images/work12.jpg" class="active" alt="Artwork 12" />
-
-<img src="images/work13.jpg" class="active" alt="Artwork 13" />
-
-<img src="images/work14.jpg" class="active" alt="Artwork 14" />
-
-<img src="images/work15.jpg" class="active" alt="Artwork 15" />
-
-<img src="images/work16.jpg" class="active" alt="Artwork 16" />
-
-<img src="images/work17.jpg" class="active" alt="Artwork 17" />
-
-<img src="images/work18.jpg" class="active" alt="Artwork 18" />
-
-<img src="images/work19.jpg" class="active" alt="Artwork 19" />
-
-<img src="images/work20.jpg" class="active" alt="Artwork 20" />
-  
-<img src="images/work20.jpg" class="active" alt="Artwork 21" />
-  
-<img src="images/work20.jpg" class="active" alt="Artwork 22" />
-  
-<img src="images/work20.jpg" class="active" alt="Artwork 23" />
-  
+<div id="gallery">
+  <button id="prev">&#9664;</button>
+  <img src="images/work1.jpg" class="active">
+  <img src="images/work2.jpg">
+  <img src="images/work3.jpg">
+  <img src="images/work4.jpg">
+  <img src="images/work5.jpg">
+  <img src="images/work6.jpg">
+  <img src="images/work7.jpg">
+  <img src="images/work8.jpg">
+  <img src="images/work9.jpg">
+  <img src="images/work10.jpg">
+  <img src="images/work11.jpg">
+  <img src="images/work12.jpg">
+  <img src="images/work13.jpg">
+  <img src="images/work14.jpg">
+  <img src="images/work15.jpg">
+  <img src="images/work16.jpg">
+  <img src="images/work17.jpg">
+  <img src="images/work18.jpg">
+  <img src="images/work19.jpg">
+  <img src="images/work20.jpg">
+  <img src="images/work21.jpg">
+  <img src="images/work22.jpg">
+  <img src="images/work23.jpg">
+  <button id="next">&#9654;</button>
 </div>
-  
-
-<button id="next" aria-label="Next">&#9654;</button>
-
-</div>
-
-
 
 <footer>
-  <div id="footer-content">
-    
-<h3>Mark Zhang - Art Portfolio</h3>
-    
-<p>Hello! My name is Mark Zhang. I am a concept artist. For collaboratino, please contact email below.</p>
-    
-<p><a href="mailto:markzhangart@gmail.com">markzhangart@gmail.com</a></p>
-  
-</div>
-
+  <strong>Mark Zhang - Art Portfolio</strong><br>
+  Hello! My name is Mark Zhang. I am a concept artist. For collaboration, please contact email below:<br>
+  <a href="mailto:markzhangart@gmail.com" style="color:#4fa3ff">markzhangart@gmail.com</a>  | <a href="https://x.com/markzhangart"  target="_blank" style="color:#4fa3ff">X</a>  | <a href="https://www.artstation.com/markzhang"   target="_blank" style="color:#4fa3ff">Artstation</a>
 </footer>
 
+<script>
+const images = document.querySelectorAll('#gallery img');
+let index = 0;
 
+function showImage(i) {
+  images.forEach((img, idx) => {
+    img.classList.toggle('active', idx === i);
+  });
+}
 
-<script src="script.js">
+document.getElementById('prev').addEventListener('click', () => {
+  index = (index - 1 + images.length) % images.length;
+  showImage(index);
+});
+
+document.getElementById('next').addEventListener('click', () => {
+  index = (index + 1) % images.length;
+  showImage(index);
+});
 </script>
 
 </body>
-
 </html>
