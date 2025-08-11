@@ -4,86 +4,92 @@
 <meta charset="UTF-8">
 <title>Mark Zhang Art Portfolio</title>
 <style>
-html, body {
-  height: 100%;
-  margin: 0;
-  background-color: #111;
-  color: white;
-  font-family: Arial, sans-serif;
-  overflow: hidden;
+body {
+    margin: 0;
+    background-color: #111;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    font-family: sans-serif;
 }
 
-footer {
-  height: 60px;
-  text-align: center;
-  font-size: 14px;
-  line-height: 1.4;
-  background-color: #111;
-  padding: 10px;
+.slider {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
 }
 
-#gallery {
-  position: relative;
-  height: calc(100vh - 70px);
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+.slider img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: none;
 }
 
-#gallery img {
-  max-height: 100%;
-  max-width: 100%;
-  object-fit: contain;
-  user-select: none;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  pointer-events: none; /* Ω˚÷π∑«ªÓ‘æÕº∆¨œÏ”¶ Û±Í */
-  z-index: 1; /* ∑«ªÓ‘æÕº∆¨µÕ≤„º∂ */
+.slider img.active {
+    display: block;
 }
 
-#gallery img.active {
-  opacity: 1;
-  pointer-events: auto; /* ‘ –ÌªÓ‘æÕº∆¨œÏ”¶ Û±Í */
-  z-index: 2; /* ªÓ‘æÕº∆¨∏ﬂ≤„º∂ */
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s;
 }
 
-button#prev, button#next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.2);
-  border: none;
-  color: white;
-  font-size: 3rem;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
+.arrow:hover {
+    background: rgba(255,255,255,0.4);
 }
 
-button#prev { left: 20px; }
-button#next { right: 20px; }
+.arrow::before {
+    content: '';
+    border: solid white;
+    border-width: 0 4px 4px 0;
+    padding: 8px;
+    display: inline-block;
+}
 
-button#prev:hover, button#next:hover {
-  background: rgba(255, 255, 255, 0.6);
+.arrow.left::before {
+    transform: rotate(135deg);
+}
+
+.arrow.right::before {
+    transform: rotate(-45deg);
+}
+
+.arrow.left {
+    left: 20px;
+}
+
+.arrow.right {
+    right: 20px;
+}
+
+.caption {
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    background-color: #000;
 }
 </style>
 </head>
 <body>
 
-<div id="gallery">
-  <button id="prev">&#9664;</button>
-  <img src="images/work1.jpg" class="active">
+<div class="slider">
+    <div class="arrow left"></div>
+ <img src="images/work1.jpg" class="active">
   <img src="images/work2.jpg">
   <img src="images/work3.jpg">
   <img src="images/work4.jpg">
@@ -106,33 +112,44 @@ button#prev:hover, button#next:hover {
   <img src="images/work21.jpg">
   <img src="images/work22.jpg">
   <img src="images/work23.jpg">
-  <button id="next">&#9654;</button>
+    <div class="arrow right"></div>
+</div>
+<div class="caption">
+    <strong>Mark Zhang - Art Portfolio</strong><br>
+    Hello! My name is Mark Zhang, I am a concept artist. For collaboration, please contact email below.<br>
+    <a href="mailto:markzhangart@gmail.com" style="color:skyblue;">markzhangart@gmail.com</a>
 </div>
 
-<footer>
-  <strong>Mark Zhang - Art Portfolio</strong><br>
-  Hello! My name is Mark Zhang. I am a concept artist. For collaboration, please contact email below:<br>
-  <a href="mailto:markzhangart@gmail.com" style="color:#4fa3ff">markzhangart@gmail.com</a>  | <a href="https://x.com/markzhangart" target="_blank" style="color:#4fa3ff">X</a>  | <a href="https://www.artstation.com/markzhang" target="_blank" style="color:#4fa3ff">Artstation</a>
-</footer>
-
 <script>
-const images = document.querySelectorAll('#gallery img');
-let index = 0;
+const images = document.querySelectorAll('.slider img');
+let currentIndex = 0;
+const total = images.length;
 
-function showImage(i) {
-  images.forEach((img, idx) => {
-    img.classList.toggle('active', idx === i);
-  });
+function showImage(index) {
+    images.forEach((img, i) => {
+        img.classList.toggle('active', i === index);
+    });
 }
 
-document.getElementById('prev').addEventListener('click', () => {
-  index = (index - 1 + images.length) % images.length;
-  showImage(index);
+document.querySelector('.arrow.left').addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + total) % total;
+    showImage(currentIndex);
 });
 
-document.getElementById('next').addEventListener('click', () => {
-  index = (index + 1) % images.length;
-  showImage(index);
+document.querySelector('.arrow.right').addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % total;
+    showImage(currentIndex);
+});
+
+// º¸≈Ã◊Û”“º¸µº∫Ω
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+        currentIndex = (currentIndex - 1 + total) % total;
+        showImage(currentIndex);
+    } else if (e.key === 'ArrowRight') {
+        currentIndex = (currentIndex + 1) % total;
+        showImage(currentIndex);
+    }
 });
 </script>
 
