@@ -83,40 +83,49 @@ body {
     font-size: 14px;
     background-color: #000;
 }
+
+#visitor-counter {
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    background-color: #000;
+}
 </style>
 </head>
 <body>
 
 <div class="slider">
     <div class="arrow left"></div>
- <img src="images/work1.jpg" class="active">
-  <img src="images/work2.jpg">
-  <img src="images/work3.jpg">
-  <img src="images/work4.jpg">
-  <img src="images/work5.jpg">
-  <img src="images/work6.jpg">
-  <img src="images/work7.jpg">
-  <img src="images/work8.jpg">
-  <img src="images/work9.jpg">
-  <img src="images/work10.jpg">
-  <img src="images/work11.jpg">
-  <img src="images/work12.jpg">
-  <img src="images/work13.jpg">
-  <img src="images/work14.jpg">
-  <img src="images/work15.jpg">
-  <img src="images/work16.jpg">
-  <img src="images/work17.jpg">
-  <img src="images/work18.jpg">
-  <img src="images/work19.jpg">
-  <img src="images/work20.jpg">
-  <img src="images/work21.jpg">
-  <img src="images/work22.jpg">
-  <img src="images/work23.jpg">
+    <img src="images/work1.jpg" class="active">
+    <img src="images/work2.jpg">
+    <img src="images/work3.jpg">
+    <img src="images/work4.jpg">
+    <img src="images/work5.jpg">
+    <img src="images/work6.jpg">
+    <img src="images/work7.jpg">
+    <img src="images/work8.jpg">
+    <img src="images/work9.jpg">
+    <img src="images/work10.jpg">
+    <img src="images/work11.jpg">
+    <img src="images/work12.jpg">
+    <img src="images/work13.jpg">
+    <img src="images/work14.jpg">
+    <img src="images/work15.jpg">
+    <img src="images/work16.jpg">
+    <img src="images/work17.jpg">
+    <img src="images/work18.jpg">
+    <img src="images/work19.jpg">
+    <img src="images/work20.jpg">
+    <img src="images/work21.jpg">
+    <img src="images/work22.jpg">
+    <img src="images/work23.jpg">
     <div class="arrow right"></div>
 </div>
 <div class="caption">
     <strong>Mark Zhang - Art Portfolio</strong>  | <a href="https://x.com/markzhangart" target="_blank" style="color:#4fa3ff">X</a>  | <a href="https://www.artstation.com/markzhang" target="_blank" style="color:#4fa3ff">Artstation</a><br><br>
-    Hello there! I am a concept artist from China. For collaboration, feel free to contact: <a href="mailto:markzhangart@gmail.com" style="color:skyblue;">markzhangart@gmail.com</a>
+    Hello there! I am a concept artist from China. For collaboration, feel free to contact: <a href="mailto:markzhangart@gmail.com" style="color:skyblue;">markzhangart@gmail.com</a><div id="visitor-counter">
+    <span id="counter">0</span>
+</div>
 </div>
 
 <script>
@@ -150,6 +159,16 @@ document.addEventListener('keydown', (e) => {
         showImage(currentIndex);
     }
 });
+
+// CountAPI ¼ÆÊýÆ÷
+window.onload = function () {
+    fetch('https://api.countapi.xyz/hit/makrzhang.art/visits')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('counter').textContent = data.value;
+        })
+        .catch(error => console.error('Error fetching counter:', error));
+};
 </script>
 
 </body>
